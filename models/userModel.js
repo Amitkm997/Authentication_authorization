@@ -1,6 +1,6 @@
 
 
-import { Timestamp } from "bson";
+
 import mongoose from "mongoose";
 const userScheme=new mongoose.Schema({
     name:{
