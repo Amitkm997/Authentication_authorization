@@ -6,7 +6,7 @@ export const authentication=(req,res,next)=>{
 
     if(!authHeader) return res.send("No token provided");
 
-    let decodedToken=jwt.verify(authHeader,"This is my secret key");
+    let decodedToken=jwt.verify(authHeader,process.env.SECRET_KEY);
 
     console.log(decodedToken);
 
