@@ -4,9 +4,13 @@ import Post from '../models/postModel.js';
 export const authentication=(req,res,next)=>{
     const authHeader=req.headers.authorization;
 
-    if(!authHeader) return res.send("No token provided");
+    if(!authHeader || authHeader.startsWith('Bearer')) {
+        return res.status(401).json({message:"No token provided"})
+    }
 
-    let decodedToken=jwt.verify(authHeader,process.env.SECRET_KEY);
+    const token=authHeader.split(' ')[1];
+
+    let decodedToken=jwt.verify(token,process.env.SECRET_KEY);
 
     console.log(decodedToken);
 

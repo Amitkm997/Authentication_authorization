@@ -4,10 +4,14 @@ import userRoutes from './routes/userRoutes.js'
 import postRoutes from './routes/postRoute.js'
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import cors from 'cors'
+
+
 dotenv.config();
 
 const app=express();
+app.use(cors())
 app.use(express.json());
 app.use(morgan('dev'));
 

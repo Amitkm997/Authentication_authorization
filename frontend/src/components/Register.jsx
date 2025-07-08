@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
-
+import API from '../api';
 export default function Register() {
     const[form,setForm]=useState({name:"",email:"",password:""});
     console.log(form.name)
     console.log(form.email)
     console.log(form.password)
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault()// prevent page to reload
-          alert("form submitted successfully");
+        try{
+            const res=await API.post('/register',form)
+            console.log(res)
+
+        }catch(error){
+            const message=error.message?.data?.message||error.message
+            console.log(message)
+        }
     }
     return (
         <>
